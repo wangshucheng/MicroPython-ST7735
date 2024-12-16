@@ -1,7 +1,16 @@
 from ST7735 import TFT,TFTColor
 from machine import SPI,Pin
-spi = SPI(2, baudrate=20000000, polarity=0, phase=0, sck=Pin(14), mosi=Pin(13), miso=Pin(12))
-tft=TFT(spi,16,17,18)
+
+BL = 5
+RST = 4
+MOSI = 3
+SCK = 2
+CS = 1
+DC = 0
+
+spi = SPI(0, baudrate=10000_000, polarity=0, phase=0, sck=Pin(SCK), mosi=Pin(MOSI), miso=None)
+# spi, aDC, aReset, aCS
+tft=TFT(spi,DC,RST,CS)
 tft.initr()
 tft.rgb(True)
 tft.fill(TFT.BLACK)
